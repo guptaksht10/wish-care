@@ -1,12 +1,13 @@
-import { Heart, Mail, Phone, MapPin } from "lucide-react";
+import { Heart, Mail, Phone, MapPin, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { InstagramIcon } from "lucide-react";
 
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-2">
           {/* Brand */}
           <div className="space-y-4">
             <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -16,9 +17,8 @@ const Footer = () => {
               Your trusted partner for hassle-free online shopping with complete care and satisfaction.
             </p>
             <div className="flex space-x-2">
-              <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-                <Heart className="h-5 w-5" />
-              </Button>
+                <InstagramIcon className="h-5 w-5 hover:text-primary" />
+                <Linkedin className="h-5 w-5 hover:text-primary" />
             </div>
           </div>
 

@@ -1,5 +1,5 @@
 
-import { Heart, ShoppingCart, User, Search } from "lucide-react";
+import { Heart, ShoppingCart, User2, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -37,7 +37,7 @@ const Header = () => {
             </Button>
             
             <Button variant="ghost" size="icon" className="hover:bg-purple-50">
-              <User className="h-5 w-5" />
+              <User2 className="h-5 w-5" />
             </Button>
           </div>
         </div>
