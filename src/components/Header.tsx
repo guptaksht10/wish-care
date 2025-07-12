@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
+//changed to useState for testing
 
 import {
   Heart,
@@ -24,7 +25,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export default function Header() {
-  const { theme, setTheme } = useTheme();
+  const [theme, setTheme] = useState("light");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
