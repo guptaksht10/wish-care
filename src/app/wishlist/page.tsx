@@ -6,6 +6,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Star, Trash2, Heart, ShoppingCart } from "lucide-react"
 import Image from "next/image"
 import { Select, SelectTrigger, SelectContent, SelectItem } from "@/components/ui/select"
+import Header from "@/components/Header"
+import Footer from "@/components/Footer"
 
 const initialWishlist = [
   {
@@ -56,6 +58,9 @@ export default function WishlistPage() {
   })
 
   return (
+    <>
+    <Header />
+
     <main className="min-h-screen bg-gradient-to-b from-white via-pink-50 to-purple-50 px-6 py-12">
       <section className="max-w-7xl mx-auto space-y-12">
         {/* Title + Sort */}
@@ -132,5 +137,7 @@ export default function WishlistPage() {
         </div>
       </section>
     </main>
+    <Footer />
+    </>
   )
 }

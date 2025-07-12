@@ -4,11 +4,15 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import { useRouter } from "next/navigation"
+import Header from "@/components/Header"
+import Footer from "@/components/Footer"
 
 export default function ProfilePage() {
   const router = useRouter()
 
   return (
+    <>
+    <Header />
     <main className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-pink-50 px-6 py-12">
       <div className="max-w-4xl mx-auto space-y-10">
         
@@ -66,5 +70,7 @@ export default function ProfilePage() {
         </div>
       </div>
     </main>
+    <Footer />
+    </>
   )
 }
