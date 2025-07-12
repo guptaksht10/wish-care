@@ -47,7 +47,7 @@ export default function OrdersPage() {
 
   return (
     <>
-    <Header/>
+    <Header />
     <main className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-pink-50 px-6 py-14">
       <div className="max-w-4xl mx-auto space-y-8">
         <h1 className="text-3xl font-extrabold text-purple-700 text-center">My Account • Orders</h1>
