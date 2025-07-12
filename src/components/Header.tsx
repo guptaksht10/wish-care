@@ -61,18 +61,23 @@ export default function Header() {
               {/* Dropdown for Categories */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Link
-                    href="#"
-                    className="flex items-center space-x-2 hover:text-purple-600 transition text-gray-700 font-medium"
-                  >
+                  <Button variant="ghost" className="text-gray-700 font-medium px-2 py-1 hover:text-purple-600">
                     Categories <ChevronDown className="ml-2 h-4 w-4" />
-                  </Link>
+                  </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-[130px]">
-                  <DropdownMenuItem>Skincare</DropdownMenuItem>
-                  <DropdownMenuItem>Electronics</DropdownMenuItem>
-                  <DropdownMenuItem>Fashion</DropdownMenuItem>
-                  <DropdownMenuItem>Home Decor</DropdownMenuItem>
+                <DropdownMenuContent className="w-[160px]">
+                  <DropdownMenuItem asChild>
+                    <Link href="/category/skincare">Skincare</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/category/electronics">Electronics</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/category/fashion">Fashion</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/category/home-decor">Home Decor</Link>
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
 
