@@ -1,5 +1,7 @@
 "use client";
 
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
@@ -42,6 +44,8 @@ export default function CartPage() {
   const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
 
   return (
+    <>
+    <Header/>
     <main className="min-h-screen bg-gradient-to-b from-pink-50 via-white to-purple-50 px-6 py-14">
       <section className="max-w-5xl mx-auto space-y-10">
         <h1 className="text-4xl font-extrabold text-center bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
@@ -117,5 +121,7 @@ export default function CartPage() {
         )}
       </section>
     </main>
+    <Footer/>
+    </>
   );
 }

@@ -2,9 +2,13 @@
 
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import Footer from "@/components/Footer"
+import Header from "@/components/Header"
 
 export default function AboutPage() {
   return (
+    <>
+    <Header/>
     <main className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-white px-6 py-20">
       <section className="max-w-6xl mx-auto">
         {/* Header */}
@@ -60,5 +64,7 @@ export default function AboutPage() {
         </div>
       </section>
     </main>
+    <Footer/>
+    </>
   )
 }

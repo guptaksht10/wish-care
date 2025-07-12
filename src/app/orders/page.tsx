@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Package, CreditCard, DollarSign, ArrowRightLeft } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const dummyOrders = [
   {
@@ -44,6 +46,8 @@ export default function OrdersPage() {
   const [payments, setPayments] = useState(dummyPayments);
 
   return (
+    <>
+    <Header/>
     <main className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-pink-50 px-6 py-14">
       <div className="max-w-4xl mx-auto space-y-8">
         <h1 className="text-3xl font-extrabold text-purple-700 text-center">My Account • Orders</h1>
@@ -141,5 +145,7 @@ export default function OrdersPage() {
         </Tabs>
       </div>
     </main>
+    <Footer/>
+    </>
   );
 }

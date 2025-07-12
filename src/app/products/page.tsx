@@ -7,6 +7,8 @@ import { Star, Heart, ShoppingCart, Share2 } from "lucide-react";
 import Image from "next/image";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { toast } from "sonner";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const products = [
   {
@@ -74,6 +76,8 @@ export default function ProductsPage() {
   };
 
   return (
+    <>
+    <Header/>
     <main className="min-h-screen bg-gradient-to-b from-pink-50 via-white to-purple-50 px-6 py-14">
       <section className="max-w-7xl mx-auto space-y-12">
         {/* Title */}
@@ -192,5 +196,7 @@ export default function ProductsPage() {
         </div>
       </section>
     </main>
+    <Footer/>
+    </>
   );
 }
