@@ -11,38 +11,47 @@ import { topRatedProducts } from "@/lib/fakeTopRated";
 import { budgetDealProducts } from "@/lib/fakeBudgetDeals";
 import { recentlyViewedProducts } from "@/lib/fakeRecentlyViewed";
 
-const allProducts = [
-  ...trendingProducts,
-  ...newArrivalProducts,
-  ...topRatedProducts,
-  ...budgetDealProducts,
-  ...recentlyViewedProducts,
-];
-
-export default function CategoryPage() {
+export default function ExploreTagPage() {
   const params = useParams();
-  const slug = (params?.slug as string) || "";
+  const tag = (params?.tag as string) || "";
 
-  const categoryProducts = allProducts.filter(
-    (product) => product.category.toLowerCase() === slug.toLowerCase()
-  );
+  const allProducts = [
+    ...trendingProducts,
+    ...newArrivalProducts,
+    ...topRatedProducts,
+    ...budgetDealProducts,
+    ...recentlyViewedProducts,
+  ];
+
+  const filteredProducts = allProducts.filter((product) => {
+    const tagMap: Record<string, keyof typeof product> = {
+      "trending": "isTrending",
+      "new-arrivals": "isNew",
+      "best-sellers": "isBestSeller",
+      "budget-deals": "isBudgetDeal",
+      "top-rated": "isTopRated",
+    };
+
+    const prop = tagMap[tag];
+    return prop && product[prop as keyof typeof product] === true;
+  });
 
   return (
     <>
       <Header />
       <main className="min-h-screen pt-6 pb-16 px-4">
         <h1 className="text-2xl font-bold text-center text-purple-700 capitalize mb-8">
-          Showing results for: {slug}
+          Showing results for: {tag.replace("-", " ")}
         </h1>
 
-        {categoryProducts.length > 0 ? (
+        {filteredProducts.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {categoryProducts.map((product) => (
+            {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-500">No products found in this category.</p>
+          <p className="text-center text-gray-500">No products found for this tag.</p>
         )}
       </main>
       <Footer />
