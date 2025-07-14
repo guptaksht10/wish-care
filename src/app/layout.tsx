@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import {Poppins} from "next/font/google";
+import { Providers } from "./providers";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -38,7 +39,7 @@ export default function RootLayout({
       <body className={`${poppins.className} antialiased`}>
         {/* ✅ Wrap all children with TooltipProvider */}
         <TooltipProvider>
-          {children}
+          <Providers>{children}</Providers>
         </TooltipProvider>
       </body>
     </html>

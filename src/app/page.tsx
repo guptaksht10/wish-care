@@ -5,6 +5,9 @@ import Hero from "@/components/sections/Hero";
 import UserFeatures from "@/components/sections/UserFeatures";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/sections/ProductCard";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const FeaturedProducts = () => {
   const products = [
@@ -91,7 +94,7 @@ const FeaturedProducts = () => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
             Featured Products
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -100,7 +103,7 @@ const FeaturedProducts = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:ml-10">
           {products.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}
@@ -111,6 +114,22 @@ const FeaturedProducts = () => {
 };
 
 export default function DashboardPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.replace("/auth/login");
+    }
+  }, [status, router]);
+
+  if (status === "loading") {
+    return (
+      <div className="flex items-center justify-center min-h-screen text-xl text-gray-600">
+        Checking authentication...
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />

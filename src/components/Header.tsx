@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-// import { useTheme } from "next-themes";
-//changed to useState for testing
-
+import Image from "next/image";
+import { signOut, useSession } from "next-auth/react";
 import {
   Heart,
   ShoppingCart,
@@ -13,6 +12,7 @@ import {
   Moon,
   Sun,
   ChevronDown,
+  LogOut,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -22,11 +22,15 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 
 export default function Header() {
   const [theme, setTheme] = useState("light");
   const [mounted, setMounted] = useState(false);
+
+  const { data: session } = useSession();
 
   useEffect(() => {
     setMounted(true);
@@ -40,7 +44,7 @@ export default function Header() {
           <div className="flex items-center space-x-8">
             <Link href="/">
               <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                WishCare
+                ShopBlend
               </h1>
             </Link>
 
@@ -61,9 +65,9 @@ export default function Header() {
               {/* Dropdown for Categories */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="text-gray-700 font-medium px-2 py-1 hover:text-purple-600">
+                  <div className="text-gray-700 font-medium px-2 py-1 hover:text-purple-600 hover:bg-none hover:cursor-pointer flex items-center">
                     Categories <ChevronDown className="ml-2 h-4 w-4" />
-                  </Button>
+                  </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-[160px]">
                   <DropdownMenuItem asChild>
@@ -126,12 +130,40 @@ export default function Header() {
               </Button>
             </Link>
 
-            {/* Profile */}
-            <Link href="/profile">
-              <Button variant="ghost" size="icon" className="hover:bg-purple-50">
-                <User2 className="h-5 w-5 text-gray-700" />
-              </Button>
-            </Link>
+            {/* User Dropdown with Avatar */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="hover:bg-purple-50">
+                  {session?.user?.image ? (
+                    <Image
+                      src={session.user.image}
+                      alt="User Avatar"
+                      width={32}
+                      height={32}
+                      className="rounded-md object-cover"
+                    />
+                  ) : (
+                    <User2 className="h-5 w-5 text-gray-700" />
+                  )}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-44">
+                <DropdownMenuLabel>
+                  {session?.user?.name || "Account"}
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link href="/profile">My Account</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => signOut({ callbackUrl: "/auth/login" })}
+                  className="text-red-500 hover:text-red-600"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             {/* Dark Mode Toggle */}
             {mounted && (

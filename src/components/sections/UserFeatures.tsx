@@ -21,7 +21,7 @@ const UserFeatures = () => {
     <section className="py-20 bg-gradient-to-br from-gray-50 to-purple-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Your Shopping Experience</h2>
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">Your Shopping Experience</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Track your purchases, manage your wishlist, and handle returns with ease
           </p>

@@ -58,8 +58,11 @@ export const authOptions = {
             }
             return session;
         },
-        redirect() {
-            return '/dashboard'
+        redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
+            // Allow absolute URLs or fallback to base
+            if (url.startsWith("/")) return `${baseUrl}${url}`
+            if (url.startsWith(baseUrl)) return url
+            return baseUrl
         }
     }
 }
