@@ -5,6 +5,11 @@ import { ArrowRight, Shield, Truck, RotateCcw } from "lucide-react";
 import clsx from "clsx";
 import Link from "next/link"; // ✅ Link import
 
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+
+
 const categories = [
   { label: "Electronics", from: "from-purple-200", to: "to-pink-200" },
   { label: "Fashion", from: "from-blue-200", to: "to-indigo-200" },
@@ -13,6 +18,60 @@ const categories = [
   { label: "Sports", from: "from-green-200", to: "to-teal-200" },
   { label: "More", from: "from-cyan-200", to: "to-blue-100" },
 ];
+
+const carouselImages = [
+  "/carousels/carousel1.avif",
+  "/carousels/carousel2.jpg",
+  "/carousels/carousel3.avif",
+];
+
+
+const ProductCarousel = () => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => { 
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % carouselImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative h-48 w-full overflow-hidden rounded-xl bg-gray-100">
+      <AnimatePresence>
+        <motion.div
+          key={current}
+          className="absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Image
+            src={carouselImages[current]}
+            alt={`Slide ${current + 1}`}
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Indicators */}
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        {carouselImages.map((_, i) => (
+          <div
+            key={i}
+            className={`h-2 w-2 rounded-full ${
+              i === current ? "bg-white" : "bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
 const Hero = () => {
   return (
@@ -105,7 +164,7 @@ const Hero = () => {
 
                 {/* Carousel Placeholder */}
                 <div className="relative overflow-hidden rounded-xl h-48 bg-gray-100 flex items-center justify-center text-gray-400 text-sm italic">
-                  Product Carousel Coming Soon
+                  <ProductCarousel />
                 </div>
 
                 {/* Quick Categories */}
