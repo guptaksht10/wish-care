@@ -9,6 +9,9 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { toast } from "sonner";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 
 const products = [
   {
@@ -17,7 +20,7 @@ const products = [
     price: "$59.99",
     originalPrice: "$79.99",
     rating: 4.5,
-    image: "https://via.placeholder.com/300x300?text=Watch",
+    image: "/products/smartwatch.jpg",
     badge: "Trending",
   },
   {
@@ -26,7 +29,7 @@ const products = [
     price: "$39.99",
     originalPrice: "$59.99",
     rating: 4.2,
-    image: "https://via.placeholder.com/300x300?text=Earbuds",
+    image: "/products/airdopes.jpg",
     badge: "Best Seller",
   },
   {
@@ -35,7 +38,7 @@ const products = [
     price: "$49.99",
     originalPrice: "$69.99",
     rating: 4.8,
-    image: "https://via.placeholder.com/300x300?text=Band",
+    image: "/products/fitbit.jpg",
     badge: "New",
   },
   {
@@ -44,7 +47,7 @@ const products = [
     price: "$29.99",
     originalPrice: "$49.99",
     rating: 4.4,
-    image: "https://via.placeholder.com/300x300?text=Speaker",
+    image: "/products/boatspeaker.jpg",
     badge: "Budget Pick",
   },
   {
@@ -53,10 +56,64 @@ const products = [
     price: "$34.99",
     originalPrice: "$54.99",
     rating: 4.6,
-    image: "https://via.placeholder.com/300x300?text=Stand",
+    image: "/products/laptopmac.jpg",
     badge: "Recommended",
   },
 ];
+
+const carouselImages = [
+  "/carousels/carousel1.avif",
+  "/carousels/carousel2.jpg",
+  "/carousels/carousel3.avif",
+];
+
+
+const ProductCarousel = () => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => { 
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % carouselImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative h-full w-full overflow-hidden rounded-xl bg-gray-100">
+      <AnimatePresence>
+        <motion.div
+          key={current}
+          className="absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Image
+            src={carouselImages[current]}
+            alt={`Slide ${current + 1}`}
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Indicators */}
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        {carouselImages.map((_, i) => (
+          <div
+            key={i}
+            className={`h-2 w-2 rounded-full ${
+              i === current ? "bg-white" : "bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
 export default function ProductsPage() {
   const [wishlist, setWishlist] = useState<number[]>([]);
@@ -91,21 +148,20 @@ export default function ProductsPage() {
         </div>
 
         {/* Carousel */}
-        <div className="relative w-full h-64 rounded-xl bg-gradient-to-r from-purple-200 to-pink-200 flex items-center justify-center shadow-lg">
-          <p className="text-xl text-purple-800 font-semibold">
-            🎠 Product Carousel Coming Soon
-          </p>
+        <div className="relative w-full h-64">
+          <ProductCarousel />
         </div>
 
         {/* Filter Tags */}
         <div className="flex flex-wrap gap-4 justify-center">
           {["🔥 Trending", "🎉 New Arrivals", "⭐ Best Rated", "💸 Budget Deals"].map((tag, index) => (
-            <span
+            <Link
+              href={`/category/${tag.split(" ").join("").toLowerCase()}`}
               key={index}
-              className="bg-white px-4 py-2 rounded-full text-sm font-medium shadow-md hover:bg-pink-100 cursor-pointer transition"
+              className="bg-white px-4 py-2 rounded-full text-sm font-medium shadow-md hover:bg-pink-100 cursor-pointer transition "
             >
               {tag}
-            </span>
+            </Link>
           ))}
         </div>
 
@@ -161,7 +217,7 @@ export default function ProductsPage() {
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
 

@@ -9,14 +9,52 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
+import {
+  Shirt,
+  Tv,
+  Home,
+  Sparkles,
+  Dumbbell,
+  MoreHorizontal,
+} from "lucide-react";
 
 const categories = [
-  { label: "Electronics", from: "from-purple-200", to: "to-pink-200" },
-  { label: "Fashion", from: "from-blue-200", to: "to-indigo-200" },
-  { label: "Home Decor", from: "from-yellow-200", to: "to-orange-200" },
-  { label: "Beauty", from: "from-rose-200", to: "to-fuchsia-200" },
-  { label: "Sports", from: "from-green-200", to: "to-teal-200" },
-  { label: "More", from: "from-cyan-200", to: "to-blue-100" },
+  {
+    label: "Electronics",
+    from: "from-purple-200",
+    to: "to-pink-200",
+    icon: Tv,
+  },
+  {
+    label: "Fashion",
+    from: "from-blue-200",
+    to: "to-indigo-200",
+    icon: Shirt,
+  },
+  {
+    label: "Home Decor",
+    from: "from-yellow-200",
+    to: "to-orange-200",
+    icon: Home,
+  },
+  {
+    label: "Beauty",
+    from: "from-rose-200",
+    to: "to-fuchsia-200",
+    icon: Sparkles,
+  },
+  {
+    label: "Sports",
+    from: "from-green-200",
+    to: "to-teal-200",
+    icon: Dumbbell,
+  },
+  {
+    label: "More",
+    from: "from-cyan-200",
+    to: "to-blue-100",
+    icon: MoreHorizontal,
+  },
 ];
 
 const carouselImages = [
@@ -173,11 +211,13 @@ const Hero = () => {
                     <div key={index} className="bg-gray-50 rounded-lg p-2 text-center">
                       <div
                         className={clsx(
-                          "w-14 h-14 rounded-lg mx-auto mb-2 bg-gradient-to-br",
+                          "w-14 h-14 rounded-lg mx-auto mb-2 bg-gradient-to-br flex items-center justify-center cursor-pointer",
                           cat.from,
                           cat.to
                         )}
-                      />
+                      >
+                        <cat.icon className="w-6 h-6 text-gray-800" />
+                      </div>
                       <p className="text-sm font-medium">{cat.label}</p>
                     </div>
                   ))}
