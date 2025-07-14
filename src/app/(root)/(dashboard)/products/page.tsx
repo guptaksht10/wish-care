@@ -26,6 +26,11 @@ const products = [
       "https://i.pravatar.cc/40?img=2",
       "https://i.pravatar.cc/40?img=3",
     ],
+    isLiked: true,
+    wishlist: [
+      "Rohit",
+      "Hitler"
+    ],
   },
   {
     id: 2,
@@ -36,6 +41,10 @@ const products = [
     image: "/products/airdopes.jpg",
     badge: "Best Seller",
     purchasedBy: ["https://i.pravatar.cc/40?img=4", "https://i.pravatar.cc/40?img=5"],
+    isLiked: true,
+    wishlist: [
+      "Sonika"
+    ],
   },
   {
     id: 3,
@@ -46,6 +55,12 @@ const products = [
     image: "/products/fitbit.jpg",
     badge: "New",
     purchasedBy: ["https://i.pravatar.cc/40?img=6", "https://i.pravatar.cc/40?img=7"],
+    isLiked: true,
+    wishlist: [
+      "Rahul", 
+      "Pratik",
+      "Ayush"
+    ],
   },
   {
     id: 4,
@@ -248,6 +263,10 @@ export default function ProductsPage() {
 
                     {/* Purchased by avatars */}
                     {product.purchasedBy && product.purchasedBy.length > 0 && (
+                      <div>
+                        {product.isLiked && <p className="text-xs bg-clip-text from-pink-500 to-purple-600 bg-gradient-to-r text-transparent">
+                        Wishlisted by your friends <b>{product.wishlist.join(", ")}</b>
+                       </p>}  
                       <div className="mt-4 flex gap-2 items-center">
                         <div className="flex justify-center -space-x-2">
                           {product.purchasedBy.slice(0, 5).map((url, idx) => (
@@ -267,6 +286,7 @@ export default function ProductsPage() {
                             See all..
                           </span>
                         </p>
+                        </div>
                       </div>
                     )}
                   </CardContent>
