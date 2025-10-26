@@ -44,7 +44,7 @@ export default function Header() {
           <div className="flex items-center space-x-8">
             <Link href="/">
               <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                ShopBlend
+                <div className="flex flex-row items-center"><Image src="/logofull_wishcare.png" alt="WishCare Logo" width={50} height={50} /> WishCare</div>
               </h1>
             </Link>
 
@@ -154,6 +154,10 @@ export default function Header() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <Link href="/profile">My Account</Link>
+                </DropdownMenuItem><DropdownMenuItem asChild>
+                  <Link href="/profile">View Orders</Link>
+                </DropdownMenuItem><DropdownMenuItem asChild>
+                  <Link href="/profile">Your Wishlist</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => signOut({ callbackUrl: "/auth/login" })}

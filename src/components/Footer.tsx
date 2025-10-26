@@ -2,6 +2,7 @@ import { Heart, Mail, Phone, MapPin, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { InstagramIcon } from "lucide-react";
+import {TwitterIcon} from "lucide-react";
 
 const Footer = () => {
   return (
@@ -19,6 +20,7 @@ const Footer = () => {
             <div className="flex space-x-2">
                 <InstagramIcon className="h-5 w-5 hover:text-primary" />
                 <Linkedin className="h-5 w-5 hover:text-primary" />
+                <TwitterIcon className="h-5 w-5 hover:text-primary" />
             </div>
           </div>
 
@@ -75,7 +77,7 @@ const Footer = () => {
             </div>
             <div className="flex items-center justify-center md:justify-start space-x-3">
               <MapPin className="h-5 w-5 text-purple-400" />
-              <span className="text-gray-400">New York, NY 10001</span>
+              <span className="text-gray-400">New Delhi, India 110007</span>
             </div>
           </div>
         </div>
@@ -83,7 +85,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            © 2024 WishCare. All rights reserved. Made with 
+            © 2025 WishCare. All rights reserved. Made with 
             <Heart className="inline h-4 w-4 mx-1 text-red-400 fill-current" /> 
             for our customers.
           </p>

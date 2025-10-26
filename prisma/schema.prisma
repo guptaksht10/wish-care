@@ -14,6 +14,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   username      String    @unique @default(nanoid())
+  password      String?
   image         String?
   role          String? // "user", "admin"
   createdAt     DateTime  @default(now())

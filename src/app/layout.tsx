@@ -25,10 +25,43 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ShopBlend | Social-Commerce Platform",
-  description: "Social shopping meets influencer trust",
+  metadataBase: new URL("http://localhost:3000"),
+  title: "WishCare | Social E-Commerce Platform",
+  description:
+    "Connect, explore, and shop smarter with WishCare — where your friends’ favorites meet your personalized wishlist.",
+  icons: {
+    icon: "/logofull_wishcare-removebg-preview.png", 
+  },
+  openGraph: {
+    title: "WishCare | Social E-Commerce Platform",
+    description:
+      "Discover trending products, share wishlists, and see what your friends love — all in one place.",
+    url: "http://localhost:3000/",
+    siteName: "WishCare",
+    images: [
+      {
+        url: "/logo_wishcaref.png", 
+        width: 1200,
+        height: 630,
+        alt: "WishCare logo and banner",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WishCare | Social E-Commerce Platform",
+    description:
+      "Connect, explore, and shop smarter with your friends on WishCare.",
+    images: ["/logo_wishcaref.png"],
+    creator: "@wishcare",
+  },
+  keywords: ["WishCare", "social commerce", "wishlist", "shopping", "friends"],
+  authors: [{ name: "Akshat Gupta" }],
 };
 
+ 
 export default function RootLayout({
   children,
 }: Readonly<{

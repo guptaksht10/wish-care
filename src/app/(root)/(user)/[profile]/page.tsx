@@ -44,7 +44,7 @@ export default function ProfilePage() {
   const user = {
     name: session.user?.name || "User",
     image: session.user?.image || "/avatars/placeholder.png",
-    bio: "UI Dev | DSA | Wishlist hoarder 😂",
+    bio: "Manifesting my wishlist, one like at a time.",
     followers: 140,
     following: 85,
     friends: 50,
